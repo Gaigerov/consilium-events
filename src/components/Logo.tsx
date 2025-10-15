@@ -12,7 +12,7 @@ export default function Logo({className = "", onClick}: LogoProps) {
             onClick={onClick}
         >
             <ImageWithFallback
-                src="/src/images/consiliumlogo.png"
+                src="/consiliumlogo.png"
                 alt="Консилиум"
                 className="h-10 sm:h-18 w-auto object-contain"
             />
