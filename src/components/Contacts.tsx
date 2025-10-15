@@ -41,18 +41,8 @@ export default function Contacts() {
                         <CardContent className="space-y-4">
                             <div className="border-l-4 border-primary pl-4">
                                 <h4 className="font-medium">Главный офис</h4>
-                                <p className="text-muted-foreground">г. Москва, ул. Тверская, д. 1, офис 500</p>
+                                <p className="text-muted-foreground">199034, г.Санкт-Петербург Большой пр. В.О., д. 16/14 лит. Б, пом. 4-Н, ком. No7</p>
                                 <p className="text-sm text-muted-foreground">9:00 - 18:00, пн-пт</p>
-                            </div>
-                            <div className="border-l-4 border-secondary pl-4">
-                                <h4 className="font-medium">Конференц-центр</h4>
-                                <p className="text-muted-foreground">г. Москва, Технопарк Сколково, д. 42</p>
-                                <p className="text-sm text-muted-foreground">Круглосуточно</p>
-                            </div>
-                            <div className="border-l-4 border-accent pl-4">
-                                <h4 className="font-medium">Выставочный зал</h4>
-                                <p className="text-muted-foreground">г. Москва, ул. Арбат, д. 25</p>
-                                <p className="text-sm text-muted-foreground">10:00 - 22:00, ежедневно</p>
                             </div>
                         </CardContent>
                     </Card>
@@ -71,7 +61,7 @@ export default function Contacts() {
                                         <Phone className="w-5 h-5 text-primary" />
                                     </div>
                                     <div>
-                                        <p className="font-medium">+7 (495) 123-45-67</p>
+                                        <p className="font-medium">+7 (812) 385 - 96 - 26</p>
                                         <p className="text-sm text-muted-foreground">Общие вопросы</p>
                                     </div>
                                 </div>
@@ -81,7 +71,7 @@ export default function Contacts() {
                                         <Mail className="w-5 h-5 text-primary" />
                                     </div>
                                     <div>
-                                        <p className="font-medium">info@eventhub.ru</p>
+                                        <p className="font-medium">info@consilium.ru</p>
                                         <p className="text-sm text-muted-foreground">Email поддержка</p>
                                     </div>
                                 </div>
@@ -101,7 +91,7 @@ export default function Contacts() {
                                         <Calendar className="w-5 h-5 text-accent-foreground" />
                                     </div>
                                     <div>
-                                        <p className="font-medium">events@eventhub.ru</p>
+                                        <p className="font-medium">events@consilium.ru</p>
                                         <p className="text-sm text-muted-foreground">Организация мероприятий</p>
                                     </div>
                                 </div>
@@ -135,7 +125,7 @@ export default function Contacts() {
                                         <strong>Техническая поддержка:</strong> круглосуточно
                                     </p>
                                     <p className="text-sm text-muted-foreground">
-                                        <strong>Горячая линия:</strong> +7 (800) 123-45-67 (бесплатно)
+                                        <strong>Горячая линия:</strong> +7 (812) 385 - 96 - 26 (бесплатно)
                                     </p>
                                 </div>
                             </div>
