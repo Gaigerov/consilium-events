@@ -20,20 +20,30 @@ interface PhotoReport {
     views: number;
 }
 
+const gastroImg = '/consilium-events/images/gastroLeto.png';
+const gastroleto1 = '/consilium-events/images/gastroleto1.jpg';
+const gastroleto2 = '/consilium-events/images/gastroleto2.jpg';
+const gastroleto3 = '/consilium-events/images/gastroleto3.jpg';
+const gastroleto4 = '/consilium-events/images/gastroleto4.jpg';
+const gastroleto5 = '/consilium-events/images/gastroleto5.jpg';
+const gastroleto6 = '/consilium-events/images/gastroleto6.jpg';
+const gastroleto7 = '/consilium-events/images/gastroleto7.jpg';
+const gastroleto8 = '/consilium-events/images/gastroleto8.jpg';
+const gastroleto9 = '/consilium-events/images/gastroleto9.jpg';
+const gastroleto10 = '/consilium-events/images/gastroleto10.jpg';
+const gastroleto11 = '/consilium-events/images/gastroleto11.jpg';
+const gastroleto12 = '/consilium-events/images/gastroleto12.jpg';
+
 const mockPhotoReports: PhotoReport[] = [
     {
         id: "report_1",
         eventId: "2",
-        eventTitle: "Конференция по технологиям будущего",
-        eventDate: "2025-01-20",
-        location: "Технопарк Сколково",
-        photographer: "Анна Фотографова",
-        coverPhoto: "https://images.unsplash.com/photo-1733222765234-08c33d436c50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25mZXJlbmNlJTIwd29ya3Nob3AlMjBhdWRpZW5jZXxlbnwxfHx8fDE3NTg5Nzg5NTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        photos: [
-            "https://images.unsplash.com/photo-1733222765234-08c33d436c50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25mZXJlbmNlJTIwd29ya3Nob3AlMjBhdWRpZW5jZXxlbnwxfHx8fDE3NTg5Nzg5NTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
-            "https://images.unsplash.com/photo-1576085898323-218337e3e43c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25mZXJlbmNlJTIwZXZlbnQlMjBwcmVzZW50YXRpb258ZW58MXx8fHwxNzU4OTA1MTU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-            "https://images.unsplash.com/photo-1580893196685-f061a838ba99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwd29ya3Nob3B8ZW58MXx8fHwxNzU4OTc4NDgxfDA&ixlib=rb-4.1.0&q=80&w=1080"
-        ],
+        eventTitle: `Конференция "Гастро-лето-2025 на Неве"`,
+        eventDate: "2025-06-07",
+        location: "Отель Введенский",
+        photographer: "Анна Ткачева",
+        coverPhoto: gastroImg,
+        photos: [gastroleto1, gastroleto2, gastroleto3, gastroleto4, gastroleto5, gastroleto6, gastroleto7, gastroleto8, gastroleto9, gastroleto10, gastroleto11, gastroleto12],
         description: "Захватывающие моменты конференции: от докладов экспертов до живого общения участников",
         category: "event",
         views: 1247
