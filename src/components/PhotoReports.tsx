@@ -191,83 +191,95 @@ export default function PhotoReports() {
                 ))}
             </div>
 
-            {/* Photo Gallery Modal */}
-            <Dialog open={!!selectedReport} onOpenChange={() => setSelectedReport(null)}>
-                <DialogContent className="max-w-5xl w-full max-h-[90vh] p-0" aria-describedby={undefined}>
-                    {selectedReport && (
-                        <>
-                            {/* Скрытый заголовок для доступности */}
-                            <DialogTitle className="sr-only">
-                                {selectedReport.eventTitle} - фото {currentPhotoIndex + 1} из {selectedReport.photos.length}
-                            </DialogTitle>
+{/* Photo Gallery Modal */}
+<Dialog open={!!selectedReport} onOpenChange={() => setSelectedReport(null)}>
+    <DialogContent className="w-full max-w-[95vw] h-auto max-h-[90vh] md:max-w-5xl p-0 overflow-hidden rounded-lg" aria-describedby={undefined}>
+        {selectedReport && (
+            <>
+                <DialogTitle className="sr-only">
+                    {selectedReport.eventTitle} - фото {currentPhotoIndex + 1} из {selectedReport.photos.length}
+                </DialogTitle>
 
-                            <div className="relative">
-                                <div className="aspect-[4/3] w-full relative">
-                                    <ImageWithFallback
-                                        src={selectedReport.photos[currentPhotoIndex]}
-                                        alt={`${selectedReport.eventTitle} - фото ${currentPhotoIndex + 1}`}
-                                        className="w-full h-full object-cover rounded-t-lg"
-                                    />
-
-                                    {/* Navigation buttons */}
-                                    {selectedReport.photos.length > 1 && (
-                                        <>
-                                            <Button
-                                                variant="secondary"
-                                                size="icon"
-                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
-                                                onClick={prevPhoto}
-                                            >
-                                                <ChevronLeft className="w-4 h-4" />
-                                            </Button>
-                                            <Button
-                                                variant="secondary"
-                                                size="icon"
-                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
-                                                onClick={nextPhoto}
-                                            >
-                                                <ChevronRight className="w-4 h-4" />
-                                            </Button>
-                                        </>
-                                    )}
-
-                                    {/* Информация о фото поверх изображения */}
-                                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                                        <div className="text-white">
-                                            <h3 className="font-semibold text-lg mb-1">{selectedReport.eventTitle}</h3>
-                                            <div className="flex items-center justify-between text-sm">
-                                                <span>{currentPhotoIndex + 1} / {selectedReport.photos.length}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Photo thumbnails */}
-                                {selectedReport.photos.length > 1 && (
-                                    <div className="p-4 bg-white border-t">
-                                        <div className="flex gap-2 overflow-x-auto">
-                                            {selectedReport.photos.map((photo, index) => (
-                                                <button
-                                                    key={index}
-                                                    onClick={() => setCurrentPhotoIndex(index)}
-                                                    className={`flex-shrink-0 w-16 h-12 rounded overflow-hidden border-2 transition-colors ${index === currentPhotoIndex ? 'border-primary' : 'border-transparent'
-                                                        }`}
-                                                >
-                                                    <ImageWithFallback
-                                                        src={photo}
-                                                        alt={`Превью ${index + 1}`}
-                                                        className="w-full h-full object-cover"
-                                                    />
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
+                <div className="relative flex flex-col h-full">
+                    {/* Основное изображение - строго по ширине модального окна */}
+                    <div className="flex-1 relative bg-black flex items-center justify-center min-h-[50vh] overflow-hidden">
+                        <div className="w-full h-full flex items-center justify-center">
+                            <div className="w-full flex justify-center">
+                                <ImageWithFallback
+                                    src={selectedReport.photos[currentPhotoIndex]}
+                                    alt={`${selectedReport.eventTitle} - фото ${currentPhotoIndex + 1}`}
+                                    className="w-full h-auto object-contain"
+                                    style={{ 
+                                        maxWidth: '100%',
+                                        maxHeight: '60vh'
+                                    }}
+                                />
                             </div>
-                        </>
+                        </div>
+
+                        {/* Navigation buttons */}
+                        {selectedReport.photos.length > 1 && (
+                            <>
+                                <Button
+                                    variant="secondary"
+                                    size="icon"
+                                    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-black text-white z-40 rounded-full w-8 h-8 shadow-lg"
+                                    onClick={prevPhoto}
+                                >
+                                    <ChevronLeft className="w-4 h-4" />
+                                </Button>
+                                <Button
+                                    variant="secondary"
+                                    size="icon"
+                                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-black text-white z-40 rounded-full w-8 h-8 shadow-lg"
+                                    onClick={nextPhoto}
+                                >
+                                    <ChevronRight className="w-4 h-4" />
+                                </Button>
+                            </>
+                        )}
+
+                        {/* Информация о фото поверх изображения */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4 z-30">
+                            <div className="text-white">
+                                <h3 className="font-semibold text-sm sm:text-lg mb-1 line-clamp-2">{selectedReport.eventTitle}</h3>
+                                <div className="flex items-center justify-between text-xs sm:text-sm">
+                                    <span>{currentPhotoIndex + 1} / {selectedReport.photos.length}</span>
+                                    <span className="text-white/70">Фотограф: {selectedReport.photographer}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Photo thumbnails */}
+                    {selectedReport.photos.length > 1 && (
+                        <div className="flex-shrink-0 p-3 bg-white border-t">
+                            <div className="flex gap-2 overflow-x-auto">
+                                {selectedReport.photos.map((photo, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setCurrentPhotoIndex(index)}
+                                        className={`flex-shrink-0 w-12 h-9 rounded overflow-hidden border-2 transition-all duration-200 ${
+                                            index === currentPhotoIndex 
+                                                ? 'border-primary scale-105 shadow-md' 
+                                                : 'border-transparent opacity-70 hover:opacity-100'
+                                        }`}
+                                    >
+                                        <ImageWithFallback
+                                            src={photo}
+                                            alt={`Превью ${index + 1}`}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     )}
-                </DialogContent>
-            </Dialog>
+                </div>
+            </>
+        )}
+    </DialogContent>
+</Dialog>
         </div>
     );
 }
