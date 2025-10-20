@@ -45,158 +45,143 @@ interface User {
     isAdmin?: boolean;
 }
 
-// Примеры мероприятий
-const getTodayDate = () => {
-    const today = new Date();
-    return today.toISOString().split('T')[0];
-};
+const eventImg = '/consilium-events/images/Ganelina.png';
+const gastroImg = '/consilium-events/images/gastroLeto.png';
 
-const getCurrentTime = () => {
-    const now = new Date();
-    // Текущее время минус 30 минут для начала
-    const startTime = new Date(now.getTime() - 30 * 60000);
-    // Текущее время плюс 2 часа для окончания
-    const endTime = new Date(now.getTime() + 2 * 60 * 60000);
 
-    return {
-        start: startTime.toTimeString().slice(0, 5),
-        end: endTime.toTimeString().slice(0, 5)
-    };
-};
-
-const times = getCurrentTime();
 
 const mockEvents: Event[] = [
     {
         id: "1_live",
-        title: "Онлайн-конференция по цифровым технологиям",
-        description: "Прямая трансляция ведущих экспертов в области цифровой трансформации и инноваций. Обсуждение актуальных трендов и технологий будущего.",
-        date: getTodayDate(),
-        startTime: times.start,
-        endTime: times.end,
-        location: "Онлайн трансляция",
-        image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop",
+        title: "Всероссийская научно-практическая конференция с международным участием «Ганелинские чтения»",
+        description: "Очный формат с онлайн-трансляцией в режиме реального времени (время местное).",
+        date: "2026-05-15",
+        startTime: "10:00",
+        endTime: "18:00",
+        location: "Санкт-Петербург, отель «Московские Ворота» (Московский пр., д. 97А)",
+        image: eventImg,
         category: "event",
         isLive: true,
         youtubeVideoId: "dQw4w9WgXcQ",
         registeredCount: 127,
-        maxCapacity: 500,
+        maxCapacity: 2000,
         price: 0
     },
     {
         id: "2",
-        title: "Конференция по технологиям будущего",
+        title: `Конференция «Гастро-лето-2025 на Неве»`,
         description: "Ведущие эксперты обсудят последние достижения в области искусственного интеллекта, машинного обучения и квантовых вычислений.",
-        date: "2025-01-20",
+        date: "2025-06-07",
+        endDate: "2025-06-08",
         startTime: "10:00",
         endTime: "18:00",
-        location: "Технопарк Сколково",
-        image: "https://images.unsplash.com/photo-1576085898323-218337e3e43c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25mZXJlbmNlJTIwZXZlbnQlMjBwcmVzZW50YXRpb258ZW58MXx8fHwxNzU4OTA1MTU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        location: `Отель «Введенский», конференц-зал «Введенский», Большой проспект П.С., 37; Лофт «Вдохновение» переулок Пирогова,18;`,
+        image: gastroImg,
         category: "event",
         isLive: false,
         youtubeVideoId: "jNQXAC9IVRw",
-        registeredCount: 230,
+        registeredCount: 300,
         maxCapacity: 300,
         price: 0
     },
-    {
-        id: "3",
-        title: "Классическая музыка: вечер камерных произведений",
-        description: "Выступление камерного оркестра с программой из произведений Моцарта, Бетховена и современных композиторов.",
-        date: "2025-09-25",
-        startTime: "19:30",
-        endTime: "22:00",
-        location: "Консерватория им. Чайковского",
-        image: "https://images.unsplash.com/photo-1558634986-2103d9d53bb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb25jZXJ0JTIwaGFsbHxlbnwxfHx8fDE3NTg5Nzg0ODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        category: "event",
-        isLive: false,
-        youtubeVideoId: "9E6b3swbnWg",
-        registeredCount: 180,
-        maxCapacity: 200,
-        price: 1500
-    },
-    {
-        id: "4",
-        title: "Мастер-класс по цифровому дизайну",
-        description: "Практический воркшоп по созданию современных интерфейсов и работе с инструментами дизайна.",
-        date: "2025-09-28",
-        startTime: "14:00",
-        endTime: "17:00",
-        location: "Креативное пространство 'Факел'",
-        image: "https://images.unsplash.com/photo-1580893196685-f061a838ba99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwd29ya3Nob3B8ZW58MXx8fHwxNzU4OTc4NDgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-        category: "event",
-        isLive: true,
-        youtubeVideoId: "uHKfrz65KSU",
-        registeredCount: 15,
-        maxCapacity: 25,
-        price: 2500
-    },
-    {
-        id: "5",
-        title: "Книжная ярмарка и встреча с авторами",
-        description: "Крупнейшая книжная ярмарка города с презентациями новых изданий и автограф-сессиями известных писателей.",
-        date: "2025-09-12",
-        startTime: "11:00",
-        endTime: "19:00",
-        location: "Центральная библиотека",
-        image: "https://images.unsplash.com/photo-1718745015015-09cd064a263b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxib29rJTIwZmFpciUyMGxpdGVyYXR1cmV8ZW58MXx8fHwxNzU4OTc4NzU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        category: "event",
-        isLive: false,
-        youtubeVideoId: "kJQP7kiw5Fk",
-        registeredCount: 85,
-        maxCapacity: 150,
-        price: 0
-    },
-    {
-        id: "6",
-        title: "Балет 'Лебединое озеро'",
-        description: "Классическая постановка балета в исполнении театра оперы и балета с участием приглашенных солистов.",
-        date: "2025-09-18",
-        startTime: "19:00",
-        endTime: "21:30",
-        location: "Большой театр",
-        image: "https://images.unsplash.com/photo-1524330685423-3e1966445abe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYW5jZSUyMHBlcmZvcm1hbmNlJTIwc3RhZ2V8ZW58MXx8fHwxNzU4ODk5MTk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        category: "event",
-        isLive: true,
-        youtubeVideoId: "9rJoB7y6Ncs",
-        registeredCount: 420,
-        maxCapacity: 500,
-        price: 3500
-    },
-    {
-        id: "7",
-        title: "Международный кинофестиваль",
-        description: "Трехдневный фестиваль независимого кино с показами авторских фильмов, встречами с режиссерами и мастер-классами.",
-        date: "2025-09-15",
-        endDate: "2025-01-17",
-        startTime: "12:00",
-        endTime: "23:00",
-        location: "Киноцентр 'Октябрь'",
-        image: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaW5lbWElMjBmaWxtJTIwZmVzdGl2YWx8ZW58MXx8fHwxNzU4OTA1MTU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        category: "event",
-        isLive: false,
-        youtubeVideoId: "dQw4w9WgXcQ",
-        registeredCount: 145,
-        maxCapacity: 200,
-        price: 1000
-    },
-    {
-        id: "8",
-        title: "Фестиваль уличной культуры",
-        description: "Двухдневный фестиваль с выступлениями артистов, граффити, брейк-данс баттлами и DJ-сетами.",
-        date: "2025-09-22",
-        endDate: "2025-09-23",
-        startTime: "14:00",
-        endTime: "22:00",
-        location: "Парк Горького",
-        image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJlZXQlMjBmZXN0aXZhbHxlbnwxfHx8fDE3NTg5MDUxNTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        category: "event",
-        isLive: true,
-        youtubeVideoId: "jNQXAC9IVRw",
-        registeredCount: 320,
-        maxCapacity: 500,
-        price: 0
-    }
+    // {
+    //     id: "3",
+    //     title: "Классическая музыка: вечер камерных произведений",
+    //     description: "Выступление камерного оркестра с программой из произведений Моцарта, Бетховена и современных композиторов.",
+    //     date: "2025-09-25",
+    //     startTime: "19:30",
+    //     endTime: "22:00",
+    //     location: "Консерватория им. Чайковского",
+    //     image: "https://images.unsplash.com/photo-1558634986-2103d9d53bb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb25jZXJ0JTIwaGFsbHxlbnwxfHx8fDE3NTg5Nzg0ODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    //     category: "event",
+    //     isLive: false,
+    //     youtubeVideoId: "9E6b3swbnWg",
+    //     registeredCount: 180,
+    //     maxCapacity: 200,
+    //     price: 1500
+    // },
+    // {
+    //     id: "4",
+    //     title: "Мастер-класс по цифровому дизайну",
+    //     description: "Практический воркшоп по созданию современных интерфейсов и работе с инструментами дизайна.",
+    //     date: "2025-09-28",
+    //     startTime: "14:00",
+    //     endTime: "17:00",
+    //     location: "Креативное пространство 'Факел'",
+    //     image: "https://images.unsplash.com/photo-1580893196685-f061a838ba99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwd29ya3Nob3B8ZW58MXx8fHwxNzU4OTc4NDgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    //     category: "event",
+    //     isLive: true,
+    //     youtubeVideoId: "uHKfrz65KSU",
+    //     registeredCount: 15,
+    //     maxCapacity: 25,
+    //     price: 2500
+    // },
+    // {
+    //     id: "5",
+    //     title: "Книжная ярмарка и встреча с авторами",
+    //     description: "Крупнейшая книжная ярмарка города с презентациями новых изданий и автограф-сессиями известных писателей.",
+    //     date: "2025-09-12",
+    //     startTime: "11:00",
+    //     endTime: "19:00",
+    //     location: "Центральная библиотека",
+    //     image: "https://images.unsplash.com/photo-1718745015015-09cd064a263b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxib29rJTIwZmFpciUyMGxpdGVyYXR1cmV8ZW58MXx8fHwxNzU4OTc4NzU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    //     category: "event",
+    //     isLive: false,
+    //     youtubeVideoId: "kJQP7kiw5Fk",
+    //     registeredCount: 85,
+    //     maxCapacity: 150,
+    //     price: 0
+    // },
+    // {
+    //     id: "6",
+    //     title: "Балет 'Лебединое озеро'",
+    //     description: "Классическая постановка балета в исполнении театра оперы и балета с участием приглашенных солистов.",
+    //     date: "2025-09-18",
+    //     startTime: "19:00",
+    //     endTime: "21:30",
+    //     location: "Большой театр",
+    //     image: "https://images.unsplash.com/photo-1524330685423-3e1966445abe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYW5jZSUyMHBlcmZvcm1hbmNlJTIwc3RhZ2V8ZW58MXx8fHwxNzU4ODk5MTk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    //     category: "event",
+    //     isLive: true,
+    //     youtubeVideoId: "9rJoB7y6Ncs",
+    //     registeredCount: 420,
+    //     maxCapacity: 500,
+    //     price: 3500
+    // },
+    // {
+    //     id: "7",
+    //     title: "Международный кинофестиваль",
+    //     description: "Трехдневный фестиваль независимого кино с показами авторских фильмов, встречами с режиссерами и мастер-классами.",
+    //     date: "2025-09-15",
+    //     endDate: "2025-01-17",
+    //     startTime: "12:00",
+    //     endTime: "23:00",
+    //     location: "Киноцентр 'Октябрь'",
+    //     image: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaW5lbWElMjBmaWxtJTIwZmVzdGl2YWx8ZW58MXx8fHwxNzU4OTA1MTU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    //     category: "event",
+    //     isLive: false,
+    //     youtubeVideoId: "dQw4w9WgXcQ",
+    //     registeredCount: 145,
+    //     maxCapacity: 200,
+    //     price: 1000
+    // },
+    // {
+    //     id: "8",
+    //     title: "Фестиваль уличной культуры",
+    //     description: "Двухдневный фестиваль с выступлениями артистов, граффити, брейк-данс баттлами и DJ-сетами.",
+    //     date: "2025-09-22",
+    //     endDate: "2025-09-23",
+    //     startTime: "14:00",
+    //     endTime: "22:00",
+    //     location: "Парк Горького",
+    //     image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJlZXQlMjBmZXN0aXZhbHxlbnwxfHx8fDE3NTg5MDUxNTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    //     category: "event",
+    //     isLive: true,
+    //     youtubeVideoId: "jNQXAC9IVRw",
+    //     registeredCount: 320,
+    //     maxCapacity: 500,
+    //     price: 0
+    // }
 ];
 
 export default function App() {

@@ -96,7 +96,7 @@ export default function PhotoReports() {
 
     return (
         <div className="space-y-6">
-                {/* Hero Section
+            {/* Hero Section
                 <div className="text-center space-y-4 py-12 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg">
                     <div className="flex items-center justify-center gap-2 mb-4">
                         <Camera className="w-8 h-8 text-primary" />
@@ -117,7 +117,15 @@ export default function PhotoReports() {
                     </div>
                 </div> */}
 
-
+            <div>
+                <h1 className="text-2xl sm:text-3xl font-bold flex items-center gap-2 break-words text-white">
+                    <Camera className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+                    Мероприятия
+                </h1>
+                <p className="text-white/70 text-sm sm:text-base">
+                    Яркие моменты наших мероприятий и выставок в профессиональных фотографиях
+                </p>
+            </div>
 
             {/* Photo Reports Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

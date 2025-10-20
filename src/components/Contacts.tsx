@@ -24,6 +24,12 @@ export default function Contacts() {
                     Свяжитесь с нами для организации мероприятий, партнерства или получения информации
                 </p>
             </div> */}
+            <div>
+                <h1 className="text-2xl sm:text-3xl font-bold flex items-center gap-2 break-words text-white">
+                    <Send className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+                    Контакты
+                </h1>
+            </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Contact Information */}

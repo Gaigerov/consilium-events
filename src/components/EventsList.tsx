@@ -5,7 +5,7 @@ import {Badge} from "./ui/badge";
 import {Input} from "./ui/input";
 import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription} from "./ui/dialog";
 import {ImageWithFallback} from "./ImageWithFallback";
-import {Search, Filter, Calendar as CalendarIcon, Clock, MapPin, Users, Play, ExternalLink} from "lucide-react";
+import {Search, Filter, Calendar as CalendarIcon, Clock, MapPin, Users, Play, ExternalLink, Calendar} from "lucide-react";
 import {trackEventView, trackSearch, trackFilter} from "./AnalyticsTracker";
 
 interface Event {
@@ -127,6 +127,12 @@ export default function EventsList({
                     </Badge>
                 )}
             </div> */}
+            <div>
+                <h1 className="text-2xl sm:text-3xl font-bold flex items-center gap-2 break-words text-white">
+                    <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+                    Мероприятия
+                </h1>
+            </div>
 
             {/* Filters */}
             <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
