@@ -39,23 +39,23 @@ const mockPhotoReports: PhotoReport[] = [
         views: 1247
     },
 
-    {
-        id: "report_3",
-        eventId: "6",
-        eventTitle: "Балет 'Лебединое озеро'",
-        eventDate: "2025-01-18",
-        location: "Большой театр",
-        photographer: "Елена Сценическая",
-        coverPhoto: "https://images.unsplash.com/photo-1740459057005-65f000db582f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25jZXJ0JTIwc3RhZ2UlMjBsaWdodHN8ZW58MXx8fHwxNzU4ODk2MzA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        photos: [
-            "https://images.unsplash.com/photo-1740459057005-65f000db582f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25jZXJ0JTIwc3RhZ2UlMjBsaWdodHN8ZW58MXx8fHwxNzU4ODk2MzA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-            "https://images.unsplash.com/photo-1524330685423-3e1966445abe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYW5jZSUyMHBlcmZvcm1hbmNlJTIwc3RhZ2V8ZW58MXx8fHwxNzU4ODk5MTk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-            "https://images.unsplash.com/photo-1558634986-2103d9d53bb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb25jZXJ0JTIwaGFsbHxlbnwxfHx8fDE3NTg5Nzg0ODF8MA&ixlib=rb-4.1.0&q=80&w=1080"
-        ],
-        description: "Магия балета: изящество танцоров и великолепие постановки",
-        category: "event",
-        views: 2156
-    }
+    // {
+    //     id: "report_3",
+    //     eventId: "6",
+    //     eventTitle: "Балет 'Лебединое озеро'",
+    //     eventDate: "2025-01-18",
+    //     location: "Большой театр",
+    //     photographer: "Елена Сценическая",
+    //     coverPhoto: "https://images.unsplash.com/photo-1740459057005-65f000db582f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25jZXJ0JTIwc3RhZ2UlMjBsaWdodHN8ZW58MXx8fHwxNzU4ODk2MzA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    //     photos: [
+    //         "https://images.unsplash.com/photo-1740459057005-65f000db582f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25jZXJ0JTIwc3RhZ2UlMjBsaWdodHN8ZW58MXx8fHwxNzU4ODk2MzA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    //         "https://images.unsplash.com/photo-1524330685423-3e1966445abe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYW5jZSUyMHBlcmZvcm1hbmNlJTIwc3RhZ2V8ZW58MXx8fHwxNzU4ODk5MTk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    //         "https://images.unsplash.com/photo-1558634986-2103d9d53bb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb25jZXJ0JTIwaGFsbHxlbnwxfHx8fDE3NTg5Nzg0ODF8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    //     ],
+    //     description: "Магия балета: изящество танцоров и великолепие постановки",
+    //     category: "event",
+    //     views: 2156
+    // }
 ];
 
 export default function PhotoReports() {
@@ -96,26 +96,26 @@ export default function PhotoReports() {
 
     return (
         <div className="space-y-6">
-            {/* Hero Section */}
-            <div className="text-center space-y-4 py-12 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                    <Camera className="w-8 h-8 text-primary" />
-                    <h1 className="text-4xl font-bold">Фотоотчеты</h1>
-                </div>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                    Яркие моменты наших мероприятий и выставок в профессиональных фотографиях
-                </p>
-                <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                        <Eye className="w-4 h-4" />
-                        <span>{mockPhotoReports.reduce((sum, report) => sum + report.views, 0).toLocaleString()} просмотров</span>
+                {/* Hero Section
+                <div className="text-center space-y-4 py-12 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg">
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                        <Camera className="w-8 h-8 text-primary" />
+                        <h1 className="text-4xl font-bold">Фотоотчеты</h1>
                     </div>
-                    <div className="flex items-center gap-1">
-                        <Camera className="w-4 h-4" />
-                        <span>{mockPhotoReports.length} фотоотчетов</span>
+                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                        Яркие моменты наших мероприятий и выставок в профессиональных фотографиях
+                    </p>
+                    <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                            <Eye className="w-4 h-4" />
+                            <span>{mockPhotoReports.reduce((sum, report) => sum + report.views, 0).toLocaleString()} просмотров</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <Camera className="w-4 h-4" />
+                            <span>{mockPhotoReports.length} фотоотчетов</span>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </div> */}
 
 
 

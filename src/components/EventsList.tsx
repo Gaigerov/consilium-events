@@ -113,7 +113,7 @@ export default function EventsList({
 
     return (
         <div className="space-y-6">
-            {/* Hero Section */}
+            {/* Hero Section
             <div className="text-center space-y-4 py-12 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg">
                 <h1 className="text-4xl font-bold">Мероприятия</h1>
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -126,7 +126,7 @@ export default function EventsList({
                         {liveEventsCount} событий в прямом эфире
                     </Badge>
                 )}
-            </div>
+            </div> */}
 
             {/* Filters */}
             <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
