@@ -18,7 +18,7 @@ const logoPath = "/consilium-events/consiliumlogo.png";
             <ImageWithFallback
                 src={logoPath}
                 alt="Консилиум"
-                className="h-10 sm:h-18 w-auto object-contain"
+                className="h-6 sm:h-8 w-auto object-contain"
                 fallbackSrc="/consiliumlogo.png" 
             />
         </div>

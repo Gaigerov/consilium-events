@@ -21,6 +21,8 @@ interface Event {
     category: "event" | "exhibition";
     isLive: boolean;
     youtubeVideoId?: string;
+    rutubeVideoId?: string;
+    videoPlatform?: "youtube" | "rutube";
     registeredCount: number;
     maxCapacity: number;
     price: number;
@@ -113,20 +115,6 @@ export default function EventsList({
 
     return (
         <div className="space-y-6">
-            {/* Hero Section
-            <div className="text-center space-y-4 py-12 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg">
-                <h1 className="text-4xl font-bold">Мероприятия</h1>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                    Откройте для себя удивительные события, участвуйте в прямых трансляциях
-                    и расширяйте свои горизонты
-                </p>
-                {liveEventsCount > 0 && (
-                    <Badge variant="destructive" className="animate-pulse text-base px-4 py-2">
-                        <div className="w-3 h-3 bg-white rounded-full mr-2"></div>
-                        {liveEventsCount} событий в прямом эфире
-                    </Badge>
-                )}
-            </div> */}
             <div>
                 <h1 className="text-2xl sm:text-3xl font-bold flex items-center gap-2 break-words text-white">
                     <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
@@ -135,18 +123,18 @@ export default function EventsList({
             </div>
 
             {/* Filters */}
-            <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
-                <div className="relative flex-1 max-w-md">
+            <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between w-full">
+                <div className="relative w-full md:flex-1">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                     <Input
                         placeholder="Поиск мероприятий..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="pl-10 bg-white/90 backdrop-blur-sm"
+                        className="w-full pl-10 bg-white/90 backdrop-blur-sm"
                     />
                 </div>
 
-                <div className="flex flex-wrap gap-2 items-center">
+                <div className="flex flex-wrap gap-2 items-center w-full md:w-auto md:ml-auto">
                     <Filter className="w-4 h-4 text-white/70" />
                     <Button
                         variant="outline"
@@ -171,7 +159,7 @@ export default function EventsList({
             {/* Events Grid */}
             {filteredEvents.length === 0 ? (
                 <div className="text-center py-12">
-                    <p className="text-muted-foreground">
+                    <p className="text-white">
                         Мероприятий по вашему запросу не найдено
                     </p>
                 </div>
@@ -202,9 +190,6 @@ export default function EventsList({
                                         </Badge>
                                     )}
                                 </DialogTitle>
-                                <DialogDescription>
-                                    Подробная информация о мероприятии
-                                </DialogDescription>
                             </DialogHeader>
 
                             <div className="space-y-6">
@@ -278,7 +263,7 @@ export default function EventsList({
 
                                 {/* Action Buttons */}
                                 <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                                    {selectedEvent.youtubeVideoId && (
+                                    {selectedEvent.videoPlatform && (
                                         <Button
                                             variant="outline"
                                             onClick={() => {
@@ -288,10 +273,11 @@ export default function EventsList({
                                             className="flex-1 cursor-pointer"
                                         >
                                             <Play className="w-4 h-4 mr-2" />
-                                            {selectedEvent.isLive && isEventLiveNow(selectedEvent) ? "Смотреть трансляцию" : "Смотреть запись"}
+                                            {selectedEvent.isLive && isEventLiveNow(selectedEvent)
+                                                ? "Смотреть трансляцию"
+                                                : "Смотреть запись"}
                                         </Button>
                                     )}
-
                                     <Button
                                         onClick={() => {
                                             onRegister(selectedEvent.id);

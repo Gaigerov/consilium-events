@@ -3,9 +3,8 @@ import {Calendar} from "./ui/calendar";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "./ui/card";
 import {Badge} from "./ui/badge";
 import {Button} from "./ui/button";
-import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription} from "./ui/dialog";
 import {ImageWithFallback} from "./ImageWithFallback";
-import {Calendar as CalendarIcon, Clock, MapPin, Users, Play, Info, X} from "lucide-react";
+import {Calendar as CalendarIcon, Clock, MapPin, Users, Play} from "lucide-react";
 
 interface Event {
     id: string;
@@ -138,25 +137,14 @@ export default function EventCalendar({
 
     return (
         <div className="space-y-6">
-            {/* Hero Section */}
-            <div className="text-center space-y-4 py-12 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                    <CalendarIcon className="w-8 h-8 text-primary" />
-                    <h1 className="text-4xl font-bold">Календарь Мероприятий</h1>
-                </div>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                    Выберите дату, чтобы посмотреть запланированные мероприятия и выставки
+            <div>
+                <h1 className="text-2xl sm:text-3xl font-bold flex items-center gap-2 break-words text-white">
+                    <CalendarIcon className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+                    Календарь Мероприятий
+                </h1>
+                <p className="text-white/70 text-sm sm:text-base">
+                    Выберите дату, чтобы посмотреть запланированные мероприятия
                 </p>
-                <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                        <div className="w-3 h-3 bg-primary rounded-full"></div>
-                        <span>Дни с мероприятиями</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <div className="w-3 h-3 bg-destructive rounded-full animate-pulse"></div>
-                        <span>Прямые трансляции</span>
-                    </div>
-                </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -180,9 +168,10 @@ export default function EventCalendar({
                                 }}
                                 modifiersStyles={{
                                     hasEvents: {
-                                        backgroundColor: 'hsl(var(--primary))',
-                                        color: 'hsl(var(--primary-foreground))',
-                                        fontWeight: 'bold'
+                                        backgroundColor: 'hsl(221.2 83.2% 53.3%)',
+                                        color: 'hsl(210 40% 98%)',
+                                        fontWeight: 'bold',
+                                        // borderRadius: '50%'
                                     }
                                 }}
                             />
@@ -194,15 +183,15 @@ export default function EventCalendar({
                 <div className="lg:col-span-2">
                     <div className="space-y-6">
                         <div>
-                            <h2 className="text-2xl font-bold mb-2">
+                            <h2 className="text-white text-2xl font-bold mb-2">
                                 {selectedDate ? formatDate(selectedDate) : 'Выберите дату'}
                             </h2>
                             {selectedDateEvents.length > 0 ? (
-                                <p className="text-muted-foreground">
+                                <p className="text-white/70">
                                     Найдено {selectedDateEvents.length} мероприятий
                                 </p>
                             ) : selectedDate ? (
-                                <p className="text-muted-foreground">
+                                <p className="text-white/70">
                                     На эту дату мероприятий не запланировано
                                 </p>
                             ) : null}
@@ -262,7 +251,7 @@ export default function EventCalendar({
                                                                 <span>{event.startTime} - {event.endTime}</span>
                                                             </div>
                                                             <div className="flex items-center gap-2">
-                                                                <MapPin className="w-4 h-4" />
+                                                                <MapPin className="w-8 h-8" />
                                                                 <span>{event.location}</span>
                                                             </div>
                                                             <div className="flex items-center gap-2">
@@ -273,16 +262,6 @@ export default function EventCalendar({
                                                     </div>
 
                                                     <div className="flex flex-col sm:flex-row gap-2">
-                                                        <Button
-                                                            variant="outline"
-                                                            size="sm"
-                                                            onClick={() => setDetailsModal({isOpen: true, event})}
-                                                            className="flex-1"
-                                                        >
-                                                            <Info className="w-4 h-4 mr-2" />
-                                                            Подробнее
-                                                        </Button>
-
                                                         {event.youtubeVideoId && (
                                                             <Button
                                                                 variant="outline"
@@ -319,115 +298,6 @@ export default function EventCalendar({
                     </div>
                 </div>
             </div>
-
-            {/* Модальное окно с подробностями события */}
-            <Dialog open={detailsModal.isOpen} onOpenChange={(open) => !open && setDetailsModal({isOpen: false, event: null})}>
-                <DialogContent className="max-w-2xl bg-white rounded-xl">
-                    {detailsModal.event && (
-                        <>
-                            <DialogHeader>
-                                <DialogTitle className="flex items-center gap-2 pr-6">
-                                    {detailsModal.event.title}
-                                    {detailsModal.event.isLive && isEventLiveNow(detailsModal.event) && (
-                                        <Badge variant="destructive" className="animate-pulse">
-                                            <div className="w-1.5 h-1.5 bg-white rounded-full mr-1"></div>
-                                            LIVE
-                                        </Badge>
-                                    )}
-                                </DialogTitle>
-                                <DialogDescription>
-                                    Подробная информация о мероприятии
-                                </DialogDescription>
-                            </DialogHeader>
-
-                            <div className="space-y-4">
-                                {/* Изображение события */}
-                                <div className="aspect-video w-full rounded-lg overflow-hidden">
-                                    <ImageWithFallback
-                                        src={detailsModal.event.image}
-                                        alt={detailsModal.event.title}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-
-                                {/* Описание */}
-                                <div>
-                                    <h3 className="font-semibold mb-2">Описание</h3>
-                                    <p className="text-muted-foreground">{detailsModal.event.description}</p>
-                                </div>
-
-                                {/* Детальная информация */}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div className="space-y-3">
-                                        <div className="flex items-center gap-2">
-                                            <CalendarIcon className="w-4 h-4 text-muted-foreground" />
-                                            <span className="text-sm">
-                                                {formatDateRange(detailsModal.event)}
-                                            </span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <Clock className="w-4 h-4 text-muted-foreground" />
-                                            <span className="text-sm">{detailsModal.event.startTime} - {detailsModal.event.endTime}</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <MapPin className="w-4 h-4 text-muted-foreground" />
-                                            <span className="text-sm">{detailsModal.event.location}</span>
-                                        </div>
-                                    </div>
-                                    <div className="space-y-3">
-                                        <div className="flex items-center gap-2">
-                                            <Users className="w-4 h-4 text-muted-foreground" />
-                                            <span className="text-sm">
-                                                {detailsModal.event.registeredCount} / {detailsModal.event.maxCapacity} участников
-                                            </span>
-                                        </div>
-
-                                        <div className="text-sm">
-                                            <span className="text-muted-foreground">Стоимость: </span>
-                                            <span className="font-medium">
-                                                {detailsModal.event.price === 0 ? 'Бесплатно' : `${detailsModal.event.price.toLocaleString()} ₽`}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Кнопки действий */}
-                                <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                                    {detailsModal.event.youtubeVideoId && (
-                                        <Button
-                                            variant="outline"
-                                            onClick={() => {
-                                                onWatchStream(detailsModal.event!);
-                                                setDetailsModal({isOpen: false, event: null});
-                                            }}
-                                            className="flex-1"
-                                        >
-                                            <Play className="w-4 h-4 mr-2" />
-                                            {detailsModal.event.isLive && isEventLiveNow(detailsModal.event) ? "Смотреть трансляцию" : "Смотреть запись"}
-                                        </Button>
-                                    )}
-
-                                    <Button
-                                        onClick={() => {
-                                            onRegister(detailsModal.event!.id);
-                                            setDetailsModal({isOpen: false, event: null});
-                                        }}
-                                        disabled={!isLoggedIn || registeredEvents.includes(detailsModal.event.id) || detailsModal.event.registeredCount >= detailsModal.event.maxCapacity}
-                                        variant={registeredEvents.includes(detailsModal.event.id) ? "secondary" : "default"}
-                                        className="flex-1"
-                                    >
-                                        {!isLoggedIn ? "Войти для регистрации"
-                                            : registeredEvents.includes(detailsModal.event.id) ? "Вы уже зарегистрированы"
-                                                : detailsModal.event.registeredCount >= detailsModal.event.maxCapacity ? "Мест нет"
-                                                    : detailsModal.event.price === 0 ? "Зарегистрироваться бесплатно"
-                                                        : `Зарегистрироваться за ${detailsModal.event.price.toLocaleString()} ₽`}
-                                    </Button>
-                                </div>
-                            </div>
-                        </>
-                    )}
-                </DialogContent>
-            </Dialog>
         </div>
     );
 }

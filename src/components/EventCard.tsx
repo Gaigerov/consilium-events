@@ -1,5 +1,4 @@
 import {Card} from "./ui/card";
-import {Badge} from "./ui/badge";
 import {ImageWithFallback} from "./ImageWithFallback";
 import {Calendar} from "lucide-react";
 

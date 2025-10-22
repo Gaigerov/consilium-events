@@ -32,14 +32,17 @@ export default function Header({onLoginClick, onLogout, isLoggedIn, userAvatar, 
         <header className="sticky top-0 z-50 w-full bg-transparent">
             <div className="container mx-auto px-4 py-4 bg-transparent">
                 {/* Основной контейнер с адаптивным flex */}
-                <div className="flex items-center justify-between min-h-16 gap-2 sm:gap-4 bg-white/95 backdrop-blur-md rounded-xl px-4 py-2 border-2 border-blue-500/50">
+                <div className="flex items-center justify-between min-h-16 gap-2 sm:gap-4 bg-white/95 backdrop-blur-md rounded-full px-4 py-2 border-2 border-blue-500/50">
                     {/* Логотип */}
                     <div className="flex-shrink-0">
                         <Logo onClick={() => onViewChange('list')} />
                     </div>
 
                     {/* Навигация только для экранов шире 1099px */}
-                    <nav className="hidden min-[1100px]:flex items-center flex-wrap justify-center gap-x-2 lg:gap-x-4 gap-y-1 flex-1 max-w-2xl mx-4">
+                    <nav
+                        className="hidden min-[1100px]:flex items-center flex-wrap justify-center gap-x-2 lg:gap-x-4 gap-y-1 flex-1 max-w-2xl mx-4"
+                        style={{marginTop: 0, paddingTop: 0}}
+                    >
                         {navigationItems.map((item) => (
                             <button
                                 key={item.key}
@@ -47,8 +50,8 @@ export default function Header({onLoginClick, onLogout, isLoggedIn, userAvatar, 
                                 className={`
                   nav-item whitespace-nowrap px-3 py-2 text-sm lg:text-base transition-all duration-200 cursor-pointer
                   ${currentView === item.value
-                                        ? 'text-primary font-medium border-b-2 border-primary'
-                                        : 'text-muted-foreground hover:text-primary border-b-2 border-transparent'
+                                        ? 'text-primary font-medium border-primary'
+                                        : 'text-muted-foreground hover:text-primary border-transparent'
                                     }
                 `}
                             >
@@ -109,9 +112,10 @@ export default function Header({onLoginClick, onLogout, isLoggedIn, userAvatar, 
                         ) : (
                             <button
                                 onClick={onLoginClick}
-                                className="flex items-center justify-center p-2 text-primary hover:text-primary/80 hover:bg-accent rounded-full transition-colors cursor-pointer"
+                                style={{backgroundColor: '#0d5188'}}
+                                className="flex items-center justify-center p-3 rounded-full transition-all cursor-pointer hover:opacity-80"
                             >
-                                <LogIn className="w-4 h-4" />
+                                <LogIn className="w-4 h-4 text-white" />
                                 <span className="sr-only">Войти</span>
                             </button>
                         )}
@@ -119,8 +123,11 @@ export default function Header({onLoginClick, onLogout, isLoggedIn, userAvatar, 
                         {/* Бургер-меню для экранов до 1099px */}
                         <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                             <SheetTrigger asChild>
-                                <button className="min-[1100px]:hidden p-2 hover:bg-accent rounded-full transition-colors cursor-pointer">
-                                    <Menu className="w-4 h-4" />
+                                <button
+                                    style={{backgroundColor: '#0d5188'}}
+                                    className="min-[1100px]:hidden p-3 rounded-full transition-all cursor-pointer hover:opacity-80"
+                                >
+                                    <Menu className="w-4 h-4 text-white" />
                                 </button>
                             </SheetTrigger>
                             <SheetContent side="right" className="w-[300px] sm:w-[400px] rounded-l-2xl bg-white">

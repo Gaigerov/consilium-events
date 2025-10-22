@@ -1,10 +1,9 @@
 import {useState} from "react";
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "./ui/card";
+import {Card, CardContent} from "./ui/card";
 import {Button} from "./ui/button";
 import {Input} from "./ui/input";
 import {Label} from "./ui/label";
 import {Textarea} from "./ui/textarea";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "./ui/select";
 import {Badge} from "./ui/badge";
 import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription} from "./ui/dialog";
 import {AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle} from "./ui/alert-dialog";
@@ -18,9 +17,7 @@ import {
     Clock,
     MapPin,
     Users,
-    Play,
     Save,
-    X
 } from "lucide-react";
 import {toast} from "sonner";
 
@@ -143,37 +140,12 @@ export default function AdminPanel({events, onEventAdd, onEventUpdate, onEventDe
                         <Settings className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
                         Панель администратора
                     </h1>
-                    <p className="text-white/70 text-sm sm:text-base">
-                        Управление мероприятиями и выставками
-                    </p>
                 </div>
 
                 <Button onClick={() => setIsAddModalOpen(true)} className="w-full sm:w-auto">
                     <Plus className="w-4 h-4 mr-2" />
                     Добавить мероприятие
                 </Button>
-            </div>
-
-            {/* Статистика */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <Card>
-                    <CardContent className="p-4">
-                        <div className="text-2xl font-bold">{events.length}</div>
-                        <div className="text-sm text-muted-foreground">Всего мероприятий</div>
-                    </CardContent>
-                </Card>
-                <Card>
-                    <CardContent className="p-4">
-                        <div className="text-2xl font-bold">{events.filter(e => e.isLive && isEventLiveNow(e)).length}</div>
-                        <div className="text-sm text-muted-foreground">Прямые трансляции</div>
-                    </CardContent>
-                </Card>
-                <Card>
-                    <CardContent className="p-4">
-                        <div className="text-2xl font-bold">{events.length}</div>
-                        <div className="text-sm text-muted-foreground">Всего мероприятий</div>
-                    </CardContent>
-                </Card>
             </div>
 
             {/* Список мероприятий */}

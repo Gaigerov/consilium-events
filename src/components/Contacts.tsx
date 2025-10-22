@@ -1,9 +1,8 @@
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "./ui/card";
+import {Card, CardContent, CardHeader, CardTitle} from "./ui/card";
 import {Button} from "./ui/button";
 import {Input} from "./ui/input";
 import {Textarea} from "./ui/textarea";
-import {Badge} from "./ui/badge";
-import {MapPin, Phone, Mail, Clock, Users, Calendar, MessageCircle, Send} from "lucide-react";
+import {MapPin, Phone, Mail, Users, Calendar, Send} from "lucide-react";
 import {toast} from "sonner";
 
 export default function Contacts() {
@@ -14,16 +13,6 @@ export default function Contacts() {
 
     return (
         <div className="space-y-6">
-            {/* Hero Section
-            <div className="text-center space-y-4 py-12 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                    <MessageCircle className="w-8 h-8 text-primary" />
-                    <h1 className="text-4xl font-bold">Контакты</h1>
-                </div>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                    Свяжитесь с нами для организации мероприятий, партнерства или получения информации
-                </p>
-            </div> */}
             <div>
                 <h1 className="text-2xl sm:text-3xl font-bold flex items-center gap-2 break-words text-white">
                     <Send className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
@@ -46,11 +35,6 @@ export default function Contacts() {
                                 <p className="text-muted-foreground">199034, г. Санкт-Петербург, Большой пр-т ВО, д. 16/14 лит. Б, пом. 4-Н, офис №7</p>
                                 <p className="text-sm text-muted-foreground">9:00 - 18:00, пн-пт</p>
                             </div>
-                            {/* <div className="border-l-4 border-secondary pl-4">
-                                <h4 className="font-medium">Конференц-центр</h4>
-                                <p className="text-muted-foreground">г. Москва, Технопарк Сколково, д. 42</p>
-                                <p className="text-sm text-muted-foreground">Круглосуточно</p>
-                            </div> */}
                         </CardContent>
                     </Card>
 
