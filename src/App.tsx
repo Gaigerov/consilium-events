@@ -11,6 +11,19 @@ import YouTubeModal from "./components/YouTubeModal";
 import {toast} from "sonner";
 import {Toaster} from "./components/ui/sonner";
 
+const ganelinaEventPhoto = './images/ganelinaEventPhoto.png'
+const gastroletoCardImage = './images/gastroletoCardImage.png'
+const spbCardioLogo = './images/spbCardioLogo.png'
+const rkoLogo = './images/rkoLogo.png'
+const mechnikovLogo = './images/mechnikovLogo.png'
+const spbHealthLogo = './images/spbHealthLogo.png'
+const lenoHealthLogo = './images/lenoHealthLogo.png'
+const bakulinaPhoto = './images/bakulinaPhoto.png'
+const karevaPhoto = './images/karevaPhoto.png'
+const simanenkovPhoto = './images/simanenkovPhoto.png'
+const sitkinPhoto = './images/sitkinPhoto.png'
+const shevyakovPhoto = './images/shevyakovPhoto.png'
+
 interface Speaker {
     id: string;
     name: string;
@@ -100,7 +113,7 @@ e-mail: vvoron1@yahoo.com
         startTime: "10:00",
         endTime: "18:00",
         location: "Санкт-Петербург, отель «Московские Ворота» (Московский пр., д. 97A)",
-        image: '/images/ganelinaEventPhoto.png',
+        image: ganelinaEventPhoto,
         category: "event",
         isLive: true,
         videoPlatform: "YouTube",
@@ -112,27 +125,27 @@ e-mail: vvoron1@yahoo.com
             {
                 id: "org1",
                 name: "Российское кардиологическое общество",
-                logo: '/images/rkoLogo.png'
+                logo: rkoLogo
             },
             {
                 id: "org2",
                 name: "Санкт-Петербургское кардиологическое научное общество им. Г.Ф. Ланга",
-                logo: '/images/spbCardioLogo.png'
+                logo: spbCardioLogo
             },
             {
                 id: "org3",
                 name: "Северо-Западный государственный медицинский университет им. И.И. Мечникова",
-                logo: '/images/mechnikovLogo.png'
+                logo: mechnikovLogo
             },
             {
                 id: "org4",
                 name: "Комитет по здравоохранению Правительства Санкт-Петербурга",
-                logo: '/images/spbHealthLogo.png'
+                logo: spbHealthLogo
             },
             {
                 id: "org5",
                 name: "Комитет по здравоохранению Правительства Ленинградской област��",
-                logo: '/images/lenoHealthLogo.png'
+                logo: lenoHealthLogo
             }
         ]
     },
@@ -151,7 +164,7 @@ e-mail: vvoron1@yahoo.com
         startTime: "10:00",
         endTime: "18:00",
         location: "Отель «Введенский», конференц-зал «Введенский», Большой проспект П.С., 37; Лофт «Вдохновение» переулок Пирогова,18;",
-        image: '/images/gastroletoCardImage.png',
+        image: gastroletoCardImage,
         category: "event",
         isLive: false,
         registeredCount: 50,
@@ -164,31 +177,31 @@ e-mail: vvoron1@yahoo.com
                 id: "speaker5",
                 name: "Бакулина Наталья Валерьевна",
                 title: "проректор по науке и инновационной деятельности, заведующий кафедрой внутренних болезней, нефрологии, общей и клинической фармакологии с курсом фармации ФГБОУ ВО СЗГМУ им. И.И. Мечникова Минздрава России, д.м.н., профессор, Санкт-Петербург",
-                avatar: '/images/bakulinaPhoto.png'
+                avatar: bakulinaPhoto
             },
             {
                 id: "speaker6",
                 name: "Карева Елена Николаевна",
                 title: "профессор кафедры молекулярной фармакологии и радиобиологии им. акад. П.В. Сергеева ФГАОУ ВО РНИМУ им. Н.И. Пирогова Минздрава России, профессор кафедры фармакологии ФГАОУ ВО Первый МГМУ им. И.М. Сеченова Минздрава России (Сеченовский Университет), д.м.н., профессор, Москва",
-                avatar: '/images/karevaPhoto.png'
+                avatar: karevaPhoto
             },
             {
                 id: "speaker7",
                 name: "Симаненков Владимир Ильич",
                 title: "профессор кафедры внутренних болезней, нефрологии, общей и клинической фармакологии с курсом фармации ФГБОУ ВО СЗГМУ им. И.И. Мечникова Минздрава России, заслуженный работник Высшей школы РФ, д.м.н., профессор, Санкт-Петербург",
-                avatar: '/images/simanenkovPhoto.png'
+                avatar: simanenkovPhoto
             },
             {
                 id: "speaker8",
                 name: "Ситкин Станислав Игоревич",
                 title: "заведующий НИГ эпигенетики и метагеномики ФГБУ «НМИЦ им. В.А. Алмазова» Минздрава России, доцент кафедры пропедевтики внутренних болезней, гастроэнтерологии и диетологии им. С.М. Рысса ФГБОУ ВО СЗГМУ им. И.И. Мечникова Минздрава России, к.м.н., доцент, Санкт-Петербург",
-                avatar: '/images/sitkinPhoto.png'
+                avatar: sitkinPhoto
             },
             {
                 id: "speaker9",
                 name: "Шевяков Михаил Александрович",
                 title: "заведующий кафедрой клинической микологии, иммунологии и аллергологии ФГБОУ ВО СЗГМУ им. И.И. Мечникова Минздрава России, д.м.н., профессор, Санкт-Петербург",
-                avatar: '/images/shevyakovPhoto.png'
+                avatar: shevyakovPhoto
             }
         ]
     }

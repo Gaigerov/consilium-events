@@ -3,6 +3,8 @@ interface LogoProps {
   onClick?: () => void;
 }
 
+const mainLogo = './images/mainLogo.png'
+
 export default function Logo({ className = "", onClick }: LogoProps) {
   return (
     <div 
@@ -10,7 +12,7 @@ export default function Logo({ className = "", onClick }: LogoProps) {
       onClick={onClick}
     >
       <img
-        src='/images/mainLogo.png'
+        src={mainLogo}
         alt="Консилиум"
         className="h-8 sm:h-10 w-auto object-contain"
       />

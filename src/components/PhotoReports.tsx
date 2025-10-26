@@ -5,10 +5,11 @@ import {Dialog, DialogContent, DialogTitle} from "./ui/dialog";
 import {Camera, Calendar, MapPin, ChevronLeft, ChevronRight} from "lucide-react";
 import {ImageWithFallback} from "./ImageWithFallback";
 
-const gastroleto1 = '/images/gastroleto1.png'
-const gastroleto2 = '/images/gastroleto2.png'
-const gastroleto3 = '/images/gastroleto3.png'
-const gastroleto4 = '/images/gastroleto4.png'
+const gastroletoCardImage = './images/gastroletoCardImage.png'
+const gastroleto1 = './images/gastroleto1.png'
+const gastroleto2 = './images/gastroleto2.png'
+const gastroleto3 = './images/gastroleto3.png'
+const gastroleto4 = './images/gastroleto4.png'
 
 interface PhotoReport {
     id: string;
@@ -31,7 +32,7 @@ const mockPhotoReports: PhotoReport[] = [
         eventDate: "2025-06-07",
         location: "Отель Введенский",
         photographer: "Анна Ткачева",
-        coverPhoto: '/images/gastroletoCardImage.png',
+        coverPhoto: gastroletoCardImage,
         photos: [
             gastroleto1,
             gastroleto2,
