@@ -11,7 +11,6 @@ import YouTubeModal from "./components/YouTubeModal";
 import {toast} from "sonner";
 import {Toaster} from "./components/ui/sonner";
 
-
 interface Speaker {
     id: string;
     name: string;
@@ -30,7 +29,7 @@ interface Event {
     title: string;
     description: string;
     date: string;
-    endDate?: string; 
+    endDate?: string;
     startTime: string;
     endTime: string;
     location: string;
@@ -42,9 +41,9 @@ interface Event {
     registeredCount: number;
     maxCapacity: number;
     price: number;
-    speakers?: Speaker[]; 
-    organizers?: Organizer[]; 
-    registrationDisabled?: boolean; 
+    speakers?: Speaker[];
+    organizers?: Organizer[];
+    registrationDisabled?: boolean;
 }
 
 interface User {

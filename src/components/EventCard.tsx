@@ -137,7 +137,7 @@ export default function EventCard({event, onClick}: EventCardProps) {
             <div className="flex items-center gap-2 bg-white/95 backdrop-blur-sm px-2 py-1.5 rounded-tl-xl shadow-lg flex-shrink-0">
               <div className="h-6 flex items-center">
                 <img
-                  src="/images/cardLogoMini.png"
+                  src={`${process.env.PUBLIC_URL}/images/cardLogoMini.png`}
                   alt="Консилиум"
                   className="h-6 w-auto object-contain"
                 />
