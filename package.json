@@ -1,6 +1,7 @@
 {
     "name": "consilium",
     "version": "0.1.0",
+    "homepage": "https://gaigerov.github.io/consilium-events",
     "private": true,
     "dependencies": {
         "@radix-ui/react-accordion": "1.2.3",
@@ -40,6 +41,7 @@
         "react-dom": "18.3.1",
         "react-hook-form": "7.55.0",
         "react-resizable-panels": "2.1.7",
+        "react-router-dom": "7.9.4",
         "recharts": "2.15.2",
         "sonner": "2.0.3",
         "tailwind-merge": "*",
@@ -48,14 +50,15 @@
     "devDependencies": {
         "@types/node": "^20.0.0",
         "@types/react": "^18.0.0",
-        "@types/react-dom": "^18.0.0",
+        "@types/react-dom": "18.0.0",
+        "@vitejs/plugin-react": "5.1.0",
         "@vitejs/plugin-react-swc": "3.10.2",
         "autoprefixer": "10.4.0",
         "gh-pages": "6.3.0",
         "postcss": "8.4.0",
         "postcss-import": "16.1.1",
         "tailwindcss": "3.3.0",
-        "typescript": "^5.0.0",
+        "typescript": "5.0.0",
         "vite": "6.3.5"
     },
     "scripts": {
