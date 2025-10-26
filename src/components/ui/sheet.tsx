@@ -36,7 +36,7 @@ const SheetOverlay = React.forwardRef<
         ref={ref}
         data-slot="sheet-overlay"
         className={cn(
-            "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
+            "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/40 backdrop-blur-sm",
             className,
         )}
         {...props}
@@ -70,7 +70,7 @@ const SheetContent = React.forwardRef<
             {...props}
         >
             {children}
-            <SheetPrimitive.Close className="ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-full p-2 opacity-70 transition-all hover:opacity-100 hover:bg-accent focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
+            <SheetPrimitive.Close className="ring-offset-background focus:ring-ring absolute top-8 right-8 rounded-full p-2 opacity-70 transition-all hover:opacity-100 hover:bg-gray-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none text-gray-700 z-50">
                 <XIcon className="size-4" />
                 <span className="sr-only">Close</span>
             </SheetPrimitive.Close>

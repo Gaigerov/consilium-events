@@ -2,6 +2,13 @@ import {Card} from "./ui/card";
 import {ImageWithFallback} from "./ImageWithFallback";
 import {Calendar} from "lucide-react";
 
+interface Speaker {
+    id: string;
+    name: string;
+    title: string;
+    avatar: string;
+}
+
 interface Event {
     id: string;
     title: string;
@@ -15,9 +22,11 @@ interface Event {
     category: "event" | "exhibition";
     isLive: boolean;
     youtubeVideoId?: string;
+    videoPlatform?: "YouTube" | "Rutube" | "VK";
     registeredCount: number;
     maxCapacity: number;
     price: number;
+    speakers?: Speaker[];
 }
 
 interface EventCardProps {
@@ -64,65 +73,92 @@ export default function EventCard({event, onClick}: EventCardProps) {
 
     const shouldShowLive = event.isLive && isEventLiveNow();
 
-    return (
-        <Card
-            className="group relative overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] border-2 border-blue-500/50"
-            onClick={onClick}
-            style={{height: '240px'}}
-        >
-            {/* Изображение на весь фон */}
-            <div className="absolute inset-0">
-                <ImageWithFallback
-                    src={event.image}
-                    alt={event.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      return (
+    <div 
+      className="p-[5px] rounded-2xl cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-[1.01]"
+      style={{ 
+        background: 'linear-gradient(135deg, rgba(52, 199, 89, 0.5), rgba(66, 200, 187, 0.5), rgba(13, 81, 136, 0.5))',
+        height: '250px'
+      }}
+      onClick={onClick}
+    >
+      <Card 
+        className="group relative overflow-hidden h-full border-0"
+      >
+      {/* Изображение на весь фон */}
+      <div className="absolute inset-0 rounded-xl overflow-hidden">
+        <ImageWithFallback
+          src={event.image}
+          alt={event.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        {/* Градиент overlay для читаемости текста */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+      </div>
+
+      {/* Контент поверх изображения */}
+      <div className="relative h-full flex flex-col justify-end">
+        {/* Нижняя часть: Название, Дата и Лого */}
+        <div className="space-y-3 pb-2 px-5">
+          {/* Название */}
+          <div className={`${shouldShowLive ? 'pr-20' : ''}`}>
+            <h3 className="text-white font-semibold text-xl leading-tight line-clamp-3 drop-shadow-lg">
+              {event.title}
+            </h3>
+          </div>
+        </div>
+
+        {/* Badges: Дата и Лого */}
+        <div className="flex items-end justify-between -m-[5px]">
+          {/* Дата и время в одну строку в левом нижнем углу */}
+          <div 
+            className="p-[5px] rounded-tr-2xl"
+            style={{ 
+              background: 'linear-gradient(135deg, rgba(52, 199, 89, 0.5), rgba(66, 200, 187, 0.5), rgba(13, 81, 136, 0.5))'
+            }}
+          >
+            <div className="flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-tr-xl shadow-lg">
+              <Calendar className="w-3.5 h-3.5 text-gray-700 flex-shrink-0" />
+              <div className="text-xs">
+                <div className="font-medium text-gray-900 whitespace-nowrap">
+                  {formatDateRange()} • {event.startTime}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Лого в правом нижнем углу */}
+          <div 
+            className="p-[5px] rounded-tl-2xl"
+            style={{ 
+              background: 'linear-gradient(135deg, rgba(52, 199, 89, 0.5), rgba(66, 200, 187, 0.5), rgba(13, 81, 136, 0.5))'
+            }}
+          >
+            <div className="flex items-center gap-2 bg-white/95 backdrop-blur-sm px-2 py-1.5 rounded-tl-xl shadow-lg flex-shrink-0">
+              <div className="h-6 flex items-center">
+                <img
+                  src="/images/cardLogoMini.png"
+                  alt="Консилиум"
+                  className="h-6 w-auto object-contain"
                 />
-                {/* Градиент overlay для читаемости текста */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            {/* Контент поверх изображения */}
-            <div className="relative h-full flex flex-col justify-between">
-                {/* Верхняя часть: Название */}
-                <div className={`p-5 ${shouldShowLive ? 'pr-24' : 'pr-5'}`}>
-                    <h3 className="text-white font-semibold text-xl leading-tight line-clamp-3 drop-shadow-lg">
-                        {event.title}
-                    </h3>
-                </div>
-
-                {/* Нижняя часть: Дата и цена */}
-                <div className="flex items-end justify-between">
-                    {/* Дата в левом нижнем углу */}
-                    <div className="flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-tr-lg shadow-lg">
-                        <Calendar className="w-4 h-4 text-gray-700 flex-shrink-0" />
-                        <div className="text-sm">
-                            <div className="font-semibold text-gray-900 whitespace-nowrap">{formatDateRange()}</div>
-                            <div className="text-xs text-gray-600 whitespace-nowrap">{event.startTime}</div>
-                        </div>
-                    </div>
-
-                    {/* Цена в правом нижнем углу */}
-                    {event.price > 0 && (
-                        <div className="flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-tl-lg shadow-lg flex-shrink-0">
-                            <div className="text-sm">
-                                <div className="font-semibold text-gray-900 whitespace-nowrap">{event.price.toLocaleString()} ₽</div>
-                            </div>
-                        </div>
-                    )}
-                </div>
+      {/* LIVE badge в правом верхнем углу */}
+      {shouldShowLive && (
+        <div className="absolute top-0 right-0">
+          <div className="bg-red-500 text-white px-3 py-2 rounded-bl-lg shadow-lg">
+            <div className="flex items-center animate-pulse">
+              <div className="w-2 h-2 bg-white rounded-full mr-1.5"></div>
+              <span className="font-semibold text-sm">LIVE</span>
             </div>
-
-            {/* LIVE badge в правом верхнем углу */}
-            {shouldShowLive && (
-                <div className="absolute top-0 right-0">
-                    <div className="bg-red-500 text-white px-3 py-2 rounded-bl-lg shadow-lg">
-                        <div className="flex items-center animate-pulse">
-                            <div className="w-2 h-2 bg-white rounded-full mr-1.5"></div>
-                            <span className="font-semibold text-sm">LIVE</span>
-                        </div>
-                    </div>
-                </div>
-            )}
-        </Card>
-    );
+          </div>
+        </div>
+      )}
+      </Card>
+    </div>
+  );
 }

@@ -1,26 +1,19 @@
-import {ImageWithFallback} from "./ImageWithFallback";
-
 interface LogoProps {
-    className?: string;
-    onClick?: () => void;
+  className?: string;
+  onClick?: () => void;
 }
 
-
-export default function Logo({className = "", onClick}: LogoProps) {
-
-const logoPath = "/consilium-events/consiliumlogo.png";
-
-    return (
-        <div
-            className={`flex items-center space-x-2 cursor-pointer ${className}`}
-            onClick={onClick}
-        >
-            <ImageWithFallback
-                src={logoPath}
-                alt="Консилиум"
-                className="h-6 sm:h-8 w-auto object-contain"
-                fallbackSrc="/consiliumlogo.png" 
-            />
-        </div>
-    );
+export default function Logo({ className = "", onClick }: LogoProps) {
+  return (
+    <div 
+      className={`flex items-center space-x-2 ${onClick ? 'cursor-pointer' : ''} ${className}`}
+      onClick={onClick}
+    >
+      <img
+        src='/images/mainLogo.png'
+        alt="Консилиум"
+        className="h-8 sm:h-10 w-auto object-contain"
+      />
+    </div>
+  );
 }

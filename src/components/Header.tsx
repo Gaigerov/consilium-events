@@ -1,9 +1,6 @@
 import {useState} from "react";
-import {Button} from "./ui/button";
 import {Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription} from "./ui/sheet";
-import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger} from "./ui/dropdown-menu";
-import {LogIn, Menu, LogOut, User, Settings} from "lucide-react";
-import {ImageWithFallback} from "./ImageWithFallback";
+import {LogIn, Menu, LogOut} from "lucide-react";
 import Logo from "./Logo";
 
 interface HeaderProps {
@@ -12,180 +9,147 @@ interface HeaderProps {
     isLoggedIn: boolean;
     userAvatar?: string;
     userName?: string;
-    currentView: 'list' | 'calendar' | 'photos' | 'contacts' | 'analytics' | 'admin';
-    onViewChange: (view: 'list' | 'calendar' | 'photos' | 'contacts' | 'analytics' | 'admin') => void;
-    showAnalytics?: boolean;
+    currentView: 'list' | 'calendar' | 'photos' | 'contacts' | 'admin';
+    onViewChange: (view: 'list' | 'calendar' | 'photos' | 'contacts' | 'admin') => void;
     isAdmin?: boolean;
 }
 
-export default function Header({onLoginClick, onLogout, isLoggedIn, userAvatar, userName, currentView, onViewChange, showAnalytics = false, isAdmin = false}: HeaderProps) {
+export default function Header({onLoginClick, onLogout, isLoggedIn, currentView, onViewChange, isAdmin = false}: HeaderProps) {
     const [isSheetOpen, setIsSheetOpen] = useState(false);
     const navigationItems = [
         {key: 'list', label: 'Мероприятия', value: 'list' as const},
         {key: 'photos', label: 'Фотоотчеты', value: 'photos' as const},
         {key: 'contacts', label: 'Контакты', value: 'contacts' as const},
-        ...(showAnalytics ? [{key: 'analytics', label: 'Аналитика', value: 'analytics' as const}] : []),
         ...(isAdmin ? [{key: 'admin', label: 'Админ', value: 'admin' as const}] : [])
     ];
 
     return (
         <header className="sticky top-0 z-50 w-full bg-transparent">
             <div className="container mx-auto px-4 py-4 bg-transparent">
-                {/* Основной контейнер с адаптивным flex */}
-                <div className="flex items-center justify-between min-h-16 gap-2 sm:gap-4 bg-white/95 backdrop-blur-md rounded-full px-4 py-2 border-2 border-blue-500/50">
-                    {/* Логотип */}
-                    <div className="flex-shrink-0">
-                        <Logo onClick={() => onViewChange('list')} />
-                    </div>
+                {/* Градиентная рамка wrapper */}
+                <div
+                    className="p-[5px] rounded-full"
+                    style={{
+                        background: 'linear-gradient(135deg, rgba(52, 199, 89, 0.5), rgba(66, 200, 187, 0.5), rgba(13, 81, 136, 0.5))'
+                    }}
+                >
+                    {/* Основной контейнер с адаптивным flex */}
+                    <div className="relative flex items-center justify-between min-h-16 bg-white/95 backdrop-blur-md rounded-full px-4 py-2">
+                        {/* Логотип */}
+                        <div className="flex-shrink-0">
+                            <Logo onClick={() => onViewChange('list')} />
+                        </div>
 
-                    {/* Навигация только для экранов шире 1099px */}
-                    <nav
-                        className="hidden min-[1100px]:flex items-center flex-wrap justify-center gap-x-2 lg:gap-x-4 gap-y-1 flex-1 max-w-2xl mx-4"
-                        style={{marginTop: 0, paddingTop: 0}}
-                    >
-                        {navigationItems.map((item) => (
-                            <button
-                                key={item.key}
-                                onClick={() => onViewChange(item.value)}
-                                className={`
-                  nav-item whitespace-nowrap px-3 py-2 text-sm lg:text-base transition-all duration-200 cursor-pointer
-                  ${currentView === item.value
-                                        ? 'text-primary font-medium border-primary'
-                                        : 'text-muted-foreground hover:text-primary border-transparent'
-                                    }
-                `}
-                            >
-                                {item.label}
-                            </button>
-                        ))}
-                    </nav>
-
-                    {/* Правая группа: мобильное меню и профиль */}
-                    <div className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
-                        {/* Профиль/Вход */}
-                        {isLoggedIn ? (
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <button className="flex items-center space-x-2 p-2 hover:bg-accent rounded-full transition-colors cursor-pointer">
-                                        <ImageWithFallback
-                                            src={userAvatar || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"}
-                                            alt="User"
-                                            className="w-8 h-8 rounded-full object-cover"
-                                        />
-                                        <span className="hidden sm:block text-sm">{userName || 'Профиль'}</span>
+                        {/* Навигация только для экранов шире 1099px - центрирование */}
+                        <nav className="hidden min-[1100px]:flex items-center justify-center h-full">
+                            <div className="flex items-center justify-center gap-x-2 lg:gap-x-4">
+                                {navigationItems.map((item) => (
+                                    <button
+                                        key={item.key}
+                                        onClick={() => onViewChange(item.value)}
+                                        className={`
+                                            nav-item whitespace-nowrap px-3 py-2 text-sm lg:text-base transition-all duration-200 cursor-pointer rounded-lg
+                                            ${currentView === item.value
+                                                ? 'text-primary font-medium bg-primary/10'
+                                                : 'text-muted-foreground hover:text-primary hover:bg-gray-100'
+                                            }
+                                        `}
+                                    >
+                                        {item.label}
                                     </button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end" className="w-56 z-50">
-                                    <DropdownMenuLabel className="px-2 py-1.5">
-                                        <div className="flex items-center space-x-2">
-                                            <ImageWithFallback
-                                                src={userAvatar || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"}
-                                                alt="User"
-                                                className="w-8 h-8 rounded-full object-cover"
-                                            />
-                                            <div className="flex flex-col space-y-1">
-                                                <p className="text-sm font-medium leading-none">{userName || 'Пользователь'}</p>
-                                                {isAdmin && (
-                                                    <p className="text-xs leading-none text-muted-foreground">Администратор</p>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </DropdownMenuLabel>
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem onClick={() => onViewChange('list')} className="cursor-pointer">
-                                        <User className="mr-2 h-4 w-4" />
-                                        <span>Мои мероприятия</span>
-                                    </DropdownMenuItem>
-                                    {isAdmin && (
-                                        <DropdownMenuItem onClick={() => onViewChange('admin')} className="cursor-pointer">
-                                            <Settings className="mr-2 h-4 w-4" />
-                                            <span>Администрирование</span>
-                                        </DropdownMenuItem>
-                                    )}
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem onClick={onLogout} className="text-red-600 focus:text-red-600 cursor-pointer">
-                                        <LogOut className="mr-2 h-4 w-4" />
-                                        <span>Выйти</span>
-                                    </DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        ) : (
-                            <button
-                                onClick={onLoginClick}
-                                style={{backgroundColor: '#0d5188'}}
-                                className="flex items-center justify-center p-3 rounded-full transition-all cursor-pointer hover:opacity-80"
-                            >
-                                <LogIn className="w-4 h-4 text-white" />
-                                <span className="sr-only">Войти</span>
-                            </button>
-                        )}
+                                ))}
+                            </div>
+                        </nav>
 
-                        {/* Бургер-меню для экранов до 1099px */}
-                        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-                            <SheetTrigger asChild>
+                        {/* Правая группа: мобильное меню и иконка входа/выхода */}
+                        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                            {/* Иконка Вход/Выход */}
+                            {isLoggedIn ? (
                                 <button
-                                    style={{backgroundColor: '#0d5188'}}
-                                    className="min-[1100px]:hidden p-3 rounded-full transition-all cursor-pointer hover:opacity-80"
+                                    onClick={onLogout}
+                                    className="flex items-center justify-center w-10 h-10 text-white rounded-full transition-colors cursor-pointer shadow-md"
+                                    style={{backgroundColor: '#003366'}}
+                                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0055aa'}
+                                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#003366'}
+                                    title="Выйти"
                                 >
-                                    <Menu className="w-4 h-4 text-white" />
+                                    <LogOut className="w-4 h-4" />
+                                    <span className="sr-only">Выйти</span>
                                 </button>
-                            </SheetTrigger>
-                            <SheetContent side="right" className="w-[300px] sm:w-[400px] rounded-l-2xl bg-white">
-                                <SheetTitle className="sr-only">Навигационное меню</SheetTitle>
-                                <SheetDescription className="sr-only">
-                                    Выберите раздел для навигации по сайту
-                                </SheetDescription>
-                                <div className="flex flex-col space-y-3 mt-8">
-                                    {/* Профиль пользователя в мобильном меню */}
-                                    {isLoggedIn && (
-                                        <div className="flex items-center space-x-3 p-4 bg-accent/50 rounded-xl mb-4">
-                                            <ImageWithFallback
-                                                src={userAvatar || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"}
-                                                alt="User"
-                                                className="w-10 h-10 rounded-full object-cover"
-                                            />
-                                            <div className="flex flex-col">
-                                                <p className="text-sm font-medium">{userName || 'Пользователь'}</p>
-                                                {isAdmin && (
-                                                    <p className="text-xs text-muted-foreground">Администратор</p>
-                                                )}
+                            ) : (
+                                <button
+                                    onClick={onLoginClick}
+                                    className="flex items-center justify-center w-10 h-10 text-white rounded-full transition-colors cursor-pointer shadow-md"
+                                    style={{backgroundColor: '#003366'}}
+                                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0055aa'}
+                                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#003366'}
+                                    title="Войти"
+                                >
+                                    <LogIn className="w-4 h-4" />
+                                    <span className="sr-only">Войти</span>
+                                </button>
+                            )}
+
+                            {/* Бургер-меню для экранов до 1099px */}
+                            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+                                <SheetTrigger asChild>
+                                    <button
+                                        className="min-[1100px]:hidden flex items-center justify-center w-10 h-10 text-white rounded-full transition-colors cursor-pointer shadow-md"
+                                        style={{backgroundColor: '#003366'}}
+                                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0055aa'}
+                                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#003366'}
+                                    >
+                                        <Menu className="w-4 h-4" />
+                                    </button>
+                                </SheetTrigger>
+                                <SheetContent side="right" className="w-[300px] sm:w-[400px] rounded-l-2xl bg-white/95 backdrop-blur-xl p-0 border-0 overflow-hidden">
+                                    <div className="absolute inset-0 rounded-l-2xl p-[5px]" style={{background: 'linear-gradient(135deg, rgba(52, 199, 89, 0.5), rgba(66, 200, 187, 0.5), rgba(13, 81, 136, 0.5))'}}>
+                                        <div className="h-full w-full bg-white/95 backdrop-blur-xl rounded-l-2xl p-6">
+                                            <SheetTitle className="sr-only">Навигационное меню</SheetTitle>
+                                            <SheetDescription className="sr-only">
+                                                Выберите раздел для навигации по сайту
+                                            </SheetDescription>
+                                            <div className="flex flex-col h-full justify-center">
+                                                <h3 className="text-gray-900 font-medium text-xl mb-6 text-center px-4">Навигация</h3>
+                                                <div className="space-y-2">
+                                                    {navigationItems.map((item) => (
+                                                        <button
+                                                            key={item.key}
+                                                            onClick={() => {
+                                                                onViewChange(item.value);
+                                                                setIsSheetOpen(false);
+                                                            }}
+                                                            className={`w-full text-center py-4 px-6 transition-all duration-200 cursor-pointer rounded-lg ${currentView === item.value
+                                                                    ? 'bg-primary/10 text-primary font-medium border border-primary/30'
+                                                                    : 'text-gray-700 hover:bg-black/10 hover:text-gray-900'
+                                                                }`}
+                                                        >
+                                                            {item.label}
+                                                        </button>
+                                                    ))}
+
+                                                    {/* Кнопка выхода в мобильном меню */}
+                                                    {isLoggedIn && (
+                                                        <button
+                                                            onClick={() => {
+                                                                onLogout?.();
+                                                                setIsSheetOpen(false);
+                                                            }}
+                                                            className="w-full text-center py-4 px-6 transition-all duration-200 text-red-600 hover:bg-red-100 border border-red-200 rounded-lg mt-4 cursor-pointer hover:border-red-300"
+                                                        >
+                                                            <div className="flex items-center justify-center space-x-2">
+                                                                <LogOut className="w-4 h-4" />
+                                                                <span>Выйти</span>
+                                                            </div>
+                                                        </button>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
-                                    )}
-
-                                    <h3 className="font-medium text-xl mb-6 text-center">Навигация</h3>
-                                    {navigationItems.map((item) => (
-                                        <button
-                                            key={item.key}
-                                            onClick={() => {
-                                                onViewChange(item.value);
-                                                setIsSheetOpen(false);
-                                            }}
-                                            className={`text-left p-4 rounded-xl hover:bg-accent transition-all duration-200 cursor-pointer ${currentView === item.value ? 'bg-accent text-primary font-medium border border-primary/20' : 'hover:translate-x-1'
-                                                }`}
-                                        >
-                                            {item.label}
-                                        </button>
-                                    ))}
-
-                                    {/* Кнопка выхода в мобильном меню */}
-                                    {isLoggedIn && (
-                                        <button
-                                            onClick={() => {
-                                                onLogout?.();
-                                                setIsSheetOpen(false);
-                                            }}
-                                            className="text-left p-4 rounded-xl hover:bg-accent transition-all duration-200 text-red-600 hover:bg-red-50 border border-red-200 mt-4 cursor-pointer"
-                                        >
-                                            <div className="flex items-center space-x-2">
-                                                <LogOut className="w-4 h-4" />
-                                                <span>Выйти</span>
-                                            </div>
-                                        </button>
-                                    )}
-                                </div>
-                            </SheetContent>
-                        </Sheet>
+                                    </div>
+                                </SheetContent>
+                            </Sheet>
+                        </div>
                     </div>
                 </div>
             </div>
